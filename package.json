@@ -1,0 +1,32 @@
+{
+  "name": "swiggy-app-sir-style",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "react"
+  ],
+  "homepage": "https://github.com/Sidgsn1/Learning-React-#readme",
+  "bugs": {
+    "url": "https://github.com/Sidgsn1/Learning-React-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sidgsn1/Learning-React-.git"
+  },
+  "license": "ISC",
+  "author": "Siddharth gusain",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "browserslist":[
+    "last 2 versions"
+  ]
+}
