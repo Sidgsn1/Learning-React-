@@ -17,6 +17,8 @@
   "author": "Siddharth gusain",
   "type": "commonjs",
   "scripts": {
+    "start":"parcel index.html",
+    "buld":"parcel build index.html",
     "test": "jest"
   },
   "devDependencies": {
