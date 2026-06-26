@@ -1,6 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-const logo = new URL("./Assets/urbanBite.jpeg", import.meta.url).href;
 
 const resList=[
                   {
@@ -942,61 +939,4 @@ const resList=[
                   }
 ]
 
-const Header=()=>{
-    return(
-        <div className='header'>
-            <div className='logo-container'>
-                <img className='logo' src={logo} />
-            </div>
-            <div className='nav-items'>
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    )
-}
-
-const RestaurantCard=(props)=>{
-    const {name,costForTwo,cuisines,avgRating,sla,cloudinaryImageId}=props.resData?.info;
-    return(
-        <div className='res-card'>
-            <img className="res-logo" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`} alt="reslogo"></img>
-            <h3 className='res-name'>{name}</h3>
-            <h4 className='res-cost'>{costForTwo}</h4>
-            <h4 className='res-cuisine'>{cuisines.join(", ")}</h4>
-            <h4 className='res-rating'>{avgRating}</h4>
-            <h4 className='res-delivery'>{sla.deliveryTime} minutes</h4>
-        </div>
-    )
-}
-const Body=()=>{
-    return (
-        <div className='body-container'>
-            <div className='search'>Search</div>
-            <div className='res-container'>
-                <RestaurantCard  resData={resList[7]}/>
-                {
-                    resList.map(restaurant => <RestaurantCard key={restaurant.info.id} resData={restaurant} />)
-                }
-            </div>
-        </div>
-    )
-}
-
-const AppLayout=()=>{
-    return(
-        <>
-            <Header />
-            <div className='app'>
-                <Body />
-            </div>
-        </>
-    )
-}
-
-const root=ReactDOM.createRoot(document.querySelector("#root"))
-root.render(<AppLayout />)
+export default resList

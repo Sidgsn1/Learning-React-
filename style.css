@@ -39,8 +39,11 @@ html , body{
     gap:45px;
 }
 /* css of card */
-.search{
+.filter{
     padding:10px; 
+}
+.filter-btn{
+    cursor:pointer;
 }
 .res-card{
     width: 200px;
