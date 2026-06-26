@@ -1,6 +1,14 @@
+import { useState } from "react";
+
+
 const logo = new URL("../../Assets/urbanBite.jpeg", import.meta.url).href;
 
+
 const Header=()=>{
+
+    const [isLoggedIn,setIsLoggedIn]=useState(false)
+    console.log("header rendered")
+    
     return(
         <div className='header'>
             <div className='logo-container'>
@@ -12,6 +20,9 @@ const Header=()=>{
                     <li>About Us</li>
                     <li>Contact Us</li>
                     <li>Cart</li>
+                    <button className="login-btn" onClick={()=>{
+                        setIsLoggedIn(prev=>!prev)
+                    }}>{isLoggedIn===false ? "login" : "logout"}</button>
                 </ul>
             </div>
         </div>

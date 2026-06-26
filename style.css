@@ -31,6 +31,17 @@ html , body{
     margin: 10px;
 }
 
+.filter{
+    display: flex;
+    gap: 20px;
+}
+
+.login-btn{
+    padding:0 30px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
 /* css of card container */
 .res-container{
     width:100%;
@@ -68,3 +79,18 @@ html , body{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* shimmer */
+.shimmer-container{
+    margin-top: 30px;
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    gap:45px;
+}
+.shimmer-card{
+    width: 200px;
+    padding:10px;
+    background-color:#f0f0f0;
+    height: 300px;
+}
+
