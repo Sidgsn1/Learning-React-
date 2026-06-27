@@ -1,19 +1,22 @@
 import {useState,useEffect} from 'react'
+import { useParams } from 'react-router';
 import DishCard from './DishCard';
 import Shimmer from './Shimmer';
+import { MENU_API } from '../utils/constants';
 
 const RestaurantMenu=()=>{
     
     const [resInfo,setResInfo]=useState(null);
+    const {resId}=useParams()
 
     useEffect(()=>{
         fetchMenu();
     },[])
 
+    // "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65420&lng=77.23730&restaurantId=831065&catalog_qa=undefined&submitAction=ENTER"
     const fetchMenu = async () => {
-        const data = await fetch(
-            "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65420&lng=77.23730&restaurantId=804071&catalog_qa=undefined&submitAction=ENTER"
-        );
+        const data = await fetch(MENU_API+resId);
+
         const jsonData=await data.json();
         console.log(jsonData)
         setResInfo(jsonData);
@@ -29,9 +32,6 @@ const RestaurantMenu=()=>{
 
     const menuCategories=cardsGroup.filter((g)=>g?.card?.card?.itemCards)
     console.log("menu Category",menuCategories)
-    
-    // const dishItems=cardsGroup?.find((c)=>c.card?.card?.itemCards)?.card?.card?.itemCards
-    // console.log("all dish in one category",dishItems)
    
     return (
         <div className="menu">
