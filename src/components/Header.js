@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {Link} from 'react-router'
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const logo = new URL("../../Assets/urbanBite.jpeg", import.meta.url).href;
 
@@ -7,6 +8,9 @@ const logo = new URL("../../Assets/urbanBite.jpeg", import.meta.url).href;
 const Header=()=>{
 
     const [isLoggedIn,setIsLoggedIn]=useState(false)
+
+    const onlineStatus=useOnlineStatus()
+
     console.log("header rendered")
     
     return(
@@ -17,6 +21,9 @@ const Header=()=>{
             <div className='nav-items'>
                 <ul>
                     <li>
+                        Online Status:{onlineStatus ? "🟢" : "🔴"}
+                    </li>
+                    <li>
                         <Link to="/">Home</Link>
                     </li>
                     <li>
@@ -24,6 +31,9 @@ const Header=()=>{
                     </li>
                     <li>
                         <Link to="/contact">Contact Us</Link>
+                    </li>
+                    <li>
+                        <Link to="/grocery">Grocery</Link>
                     </li>
                     <li>Cart</li>
                     <button className="login-btn" onClick={()=>{
