@@ -56,3 +56,24 @@
 body {
     font-family: "Gilroy", sans-serif;
 }
+.loader{
+    background: conic-gradient(
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0.5),
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.05)
+    );
+
+    -webkit-mask: radial-gradient(circle, transparent 60%, black 62%);
+            mask: radial-gradient(circle, transparent 60%, black 62%);
+    animation: spin 1s linear infinite;
+}
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}

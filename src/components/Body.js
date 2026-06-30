@@ -3,15 +3,17 @@ import Shimmer from "./Shimmer"
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router'
 import useOnlineStatus from '../utils/useOnlineStatus'
-import useRestaurantList from "../utils/useRestaurantList"
+import useHomeData from "../utils/useHomeData"
 import { Search } from "lucide-react"
+import whatsOnYourMind from "./WhatsOnYourMind"
+import TopRestaurantChains from "./TopRestaurantChains"
 
 const Body=()=>{
     // const [listOfRestaurants,setListOfRestaurants]=useState([])
     const [filteredRestaurant,setFilteredRestaurant]=useState([])
     const [searchText,setSearchText]=useState("")
 
-    const listOfRestaurants=useRestaurantList()  //for fetching the restaurants
+    const {listOfRestaurants,topRestaurantChains,whatsOnYourMind,} = useHomeData();  //for fetching the restaurants
 
     console.log("body rendered");
 
@@ -47,25 +49,52 @@ const Body=()=>{
         
         setFilteredRestaurant(searchedRes);
     };
+
     const filterButtonsList = [
-        {
-            id: 1,
-            title: "Offers",
-        },
-        {
-            id: 2,
-            title: "Ratings 4.0+",
-        },
-        {
-            id: 3,
-            title: "Top Rated",
-        },
+        { id: 0, title: "All", type: "all" },
+        { id: 1, title: "Ratings 4.0+", type: "rating4" },
+        { id: 2, title: "Top Rated", type: "topRated" },
+        { id: 3, title: "Pure Veg", type: "veg" },
+        { id: 4, title: "Fast Delivery", type: "fastDelivery" },
     ];
+
+    const handleFilter=(type)=>{
+        let filtered=listOfRestaurants;
+
+        switch(type){
+           
+            case "all":
+                filtered=listOfRestaurants
+                break;
+            case "rating4":
+                filtered=listOfRestaurants.filter((res)=>res.info.avgRating >= 4)
+                break;
+            case "topRated":
+                filtered=listOfRestaurants.filter((res)=>res.info.avgRating >= 4.5)
+                break;
+            case "veg":
+                filtered=listOfRestaurants.filter((res)=>res.info.veg)
+                break;
+            case "fastDelivery":
+                filtered = listOfRestaurants.filter((res)=>res.info.sla.deliveryTime <= 30);
+                break;
+
+            default:
+                filtered=listOfRestaurants
+        }
+        setFilteredRestaurant(filtered)
+    }
 
     if(onlineStatus === false) return <h1>Looks like you are offline!! Please check you internet connection..</h1>
 
     return (filteredRestaurant.length===0)?<Shimmer /> : (
         <div className='body-container max-w-7xl mx-auto px-6 py-8'>
+            {
+                whatsOnYourMind.length > 0 && (<WhatsOnYourMind data={whatsOnYourMind} />)
+            }
+            {
+                topRestaurantChains > 0 && (<TopRestaurantChains data={topRestaurantChains} />)
+            }
             <h1 className="text-4xl font-bold">Restaurants with online food delivery in Delhi</h1>
             <div className='filter flex flex-col gap-6 mt-8'>
                 <div className="search flex items-center w-fit">
@@ -84,10 +113,8 @@ const Body=()=>{
                     {
                         filterButtonsList.map((btn)=>(                           
                             <button key={btn.id} className="filter-btn px-5 py-2 rounded-full border border-gray-300 bg-white shadow-sm text-sm
-                            font-semibold text-gray-700 hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer" onClick={()=>{
-                                const filteredList = listOfRestaurants.filter((res)=>res.info.avgRating > 4.3)
-                                setFilteredRestaurant(filteredList)
-                            }}>{btn.title}</button>
+                            font-semibold text-gray-700 hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer" 
+                            onClick={()=>handleFilter(btn.type)}>{btn.title}</button>
                         ))
                     }   
                 </div>
