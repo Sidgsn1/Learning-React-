@@ -1,4 +1,4 @@
-import User from "./User"
+import User from "./UserFnc"
 import UserClass from "./UserClass"
 import React from "react"
 

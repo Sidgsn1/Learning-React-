@@ -2,7 +2,7 @@
 import {useEffect, useState} from 'react'
 import Shimmer from './Shimmer';
 
-const User=()=>{    
+const UserFnc=()=>{    
     const [userData,setUserData]=useState(null);
 
     useEffect(()=>{
@@ -40,4 +40,4 @@ const User=()=>{
     )
 }
 
-export default User
+export default UserFnc

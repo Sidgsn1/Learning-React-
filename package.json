@@ -25,9 +25,12 @@
     "parcel": "^2.16.4"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
+    "lucide-react": "^1.22.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.0"
+    "react-router-dom": "^7.18.0",
+    "tailwindcss": "^4.3.2"
   },
   "browserslist": [
     "last 2 versions"

@@ -18,7 +18,7 @@ const useRestaurantList=()=>{
             return c?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         })?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         
-        console.log(restaurants)
+        console.log("rest list",restaurants)
         
         setListOfRestaurants(restaurants)
     }
