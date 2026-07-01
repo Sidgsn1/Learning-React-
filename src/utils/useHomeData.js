@@ -18,15 +18,15 @@ const useHomeData=()=>{
         
         console.log("all dataa",jsonData)
 
-        const restaurants=jsonData?.data?.cards?.find((c)=>{
-            return c?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        })?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const restaurants = jsonData?.data?.cards?.find((card) =>
+            card?.card?.card?.id === "restaurant_grid_listing_v2")?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
         console.log("rest list",restaurants)
 
         const whatsOnYourMindData = jsonData?.data?.cards?.find(
             (card) => card?.card?.card?.id === "whats_on_your_mind"
-        )?.card?.card?.imageGridCards?.info || []
+        )?.card?.card?.imageGridCards?.info || jsonData?.data?.cards?.find( (card) =>
+        card?.card?.card?.header?.title === "What's on your mind?")?.card?.card?.imageGridCards?.info || [];
 
         console.log("whts on mind",whatsOnYourMindData)
         const topRestaurantChainsData = jsonData?.data?.cards?.find(

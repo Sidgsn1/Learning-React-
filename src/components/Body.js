@@ -5,7 +5,7 @@ import {Link} from 'react-router'
 import useOnlineStatus from '../utils/useOnlineStatus'
 import useHomeData from "../utils/useHomeData"
 import { Search } from "lucide-react"
-import whatsOnYourMind from "./WhatsOnYourMind"
+import WhatsOnYourMind from "./WhatsOnYourMind"
 import TopRestaurantChains from "./TopRestaurantChains"
 
 const Body=()=>{
@@ -88,14 +88,14 @@ const Body=()=>{
     if(onlineStatus === false) return <h1>Looks like you are offline!! Please check you internet connection..</h1>
 
     return (filteredRestaurant.length===0)?<Shimmer /> : (
-        <div className='body-container max-w-7xl mx-auto px-6 py-8'>
+        <div className='body-container max-w-7xl mx-auto px-6 py-4'>
             {
                 whatsOnYourMind.length > 0 && (<WhatsOnYourMind data={whatsOnYourMind} />)
             }
             {
-                topRestaurantChains > 0 && (<TopRestaurantChains data={topRestaurantChains} />)
+                topRestaurantChains.length > 0 && (<TopRestaurantChains data={topRestaurantChains} />)
             }
-            <h1 className="text-4xl font-bold">Restaurants with online food delivery in Delhi</h1>
+            <h1 className="text-4xl font-bold mt-10">Restaurants with online food delivery in Delhi</h1>
             <div className='filter flex flex-col gap-6 mt-8'>
                 <div className="search flex items-center w-fit">
                     <input type="text"className="search-box w-72 rounded-l-md outline-none font-semibold bg-gray-200 px-4 py-3 " placeholder="Search For Restaurant and Food"
